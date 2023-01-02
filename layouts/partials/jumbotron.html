@@ -6,9 +6,7 @@
     <p>
       <a href="{{ .Site.Params.jumbotron.FirstButtonLink }}" class="btn btn-primary btn-jumbotron">{{ .Site.Params.jumbotron.FirstButtonText }}</a>
       <a href="{{ .Site.Params.jumbotron.SecondButtonLink }}" class="btn btn-secondary btn-jumbotron">{{ .Site.Params.jumbotron.SecondButtonText }}</a>
-      {{ if isset .Site.Params.jumbotron "meetupbuttontext" }}
-        <a href="{{ .Site.Params.urls.meetupUrl }}" class="btn btn-danger btn-jumbotron">{{ .Site.Params.jumbotron.meetupButtonText }}</a>
-      {{ end }}
+      <a href="{{ .Site.Params.jumbotron.ThirdButtonLink }}" class="btn btn-danger btn-jumbotron">{{ .Site.Params.jumbotron.ThirdButtonText }}</a>
     </p>
   </div>
 </section>

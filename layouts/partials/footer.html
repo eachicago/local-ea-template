@@ -20,6 +20,15 @@
       {{ if isset .Site.Params.urls "meetupurl" }}
         <a href="{{ .Site.Params.urls.MeetupUrl }}"><i class="fab fa-meetup fa-3x"></i></a>
       {{ end }}
+      {{ if isset .Site.Params.urls "eventbriteurl" }}
+        <a href="{{ .Site.Params.urls.EventbriteUrl }}"><i class="fas fa-ticket-alt fa-3x"></i></a>
+      {{ end }}
+      {{ if isset .Site.Params.urls "slackurl" }}
+        <a href="{{ .Site.Params.urls.SlackUrl }}"><i class="fab fa-slack fa-3x"></i></a>
+      {{ end }}
+      {{ if isset .Site.Params.urls "substackurl" }}
+        <a href="{{ .Site.Params.urls.SubstackUrl }}"><i class="far fa-newspaper fa-3x"></i></a>
+      {{ end }}
     </div>
   </div>
 </div>
