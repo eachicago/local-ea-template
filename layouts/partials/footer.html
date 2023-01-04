@@ -1,7 +1,11 @@
 <div class="container text-banner">
   <div class="row">
     <div class="col-sm-4">{{ with .Site.GetPage "page" "_footer-left" }}{{ .Content | markdownify }}{{ end }}</div>
-    <div class="col-sm-8">{{ with .Site.GetPage "page" "_footer-right" }}{{ .Content | markdownify }}{{ end }}</div>
+    <div class="col-sm-4">{{ with .Site.GetPage "page" "_footer-right" }}{{ .Content | markdownify }}{{ end }}</div>
+    <div class="col-sm-4">
+      <h4 id="newsletter">Newsletter</h4>
+      <iframe src="https://eachicago.substack.com/embed" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+    </div>
   </div>
   <div class="row">
     <div id="footer-legal" class="col-12">
