@@ -1,0 +1,32 @@
+{{/*
+  Homepage masthead. Button links in config may be either absolute
+  (https://…, mailto:…) or a site-relative path like "calendar" — the
+  latter is run through absLangURL so it keeps working under a language
+  prefix or a project-subdirectory baseURL.
+*/}}
+<header class="masthead">
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-xl-9">
+        <div class="text-center text-white">
+          <h1 class="mb-4">{{ .Site.Params.homepage.mastheadHeading | default .Site.Params.general.fullTitle }}</h1>
+          <h3 class="mb-5 fw-light">{{ .Site.Params.homepage.mastheadSubheading | default .Site.Params.general.strapline }}</h3>
+          <p class="mb-0">
+            {{ range $i, $b := (slice
+                  (dict "text" .Site.Params.jumbotron.FirstButtonText  "link" .Site.Params.jumbotron.FirstButtonLink  "class" "btn-primary")
+                  (dict "text" .Site.Params.jumbotron.SecondButtonText "link" .Site.Params.jumbotron.SecondButtonLink "class" "btn-light")
+                  (dict "text" .Site.Params.jumbotron.ThirdButtonText  "link" .Site.Params.jumbotron.ThirdButtonLink  "class" "btn-outline-light")) }}
+              {{ if and $b.text $b.link }}
+                {{ $href := $b.link }}
+                {{ if not (or (hasPrefix $b.link "http") (hasPrefix $b.link "mailto:")) }}
+                  {{ $href = $b.link | absLangURL }}
+                {{ end }}
+                <a href="{{ $href }}" class="btn {{ $b.class }} btn-lg m-1">{{ $b.text }}</a>
+              {{ end }}
+            {{ end }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

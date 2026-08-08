@@ -1,51 +1,59 @@
 {{ partial "header.html" . }}
-{{/* partial "debug.html" . */}}
-{{ partial "jumbotron.html" . }}
+{{ partial "masthead.html" . }}
 
-<div class="container-fluid no-gutter">
-  <div id="top-banner" class="row banner-section" style="background-image:url('{{ "img/top-banner.jpg" | absURL }}')">
-    <div class="all-center"><span class="banner-section-text">{{ .Site.Params.homepage.topBannerText }}</span></div>
-  </div>
-</div>
-
-<section class="text-center">
-  <div class="container banner-section text-banner">
-      <p class="lead">{{ .Site.Params.homepage.leadText }}</p>
-
-      <container>
-        <div class="row align-items-center">
-          <div class="col-lg-4">
-            <h3>{{ .Site.Params.homepage.firstSectionHeader }}</h3>
-          </div>
-          <div class="col-lg-8">
-            <p>{{ with .Site.GetPage "homepage/_first_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
+<!-- The three homepage sections, driven by config headers + content/homepage/*.md -->
+<section class="features-icons bg-light text-center">
+  <div class="container">
+    <div class="row">
+      {{ range (slice
+            (dict "icon" "bi-compass"       "header" .Site.Params.homepage.firstSectionHeader  "page" "homepage/_first_section_text")
+            (dict "icon" "bi-people"        "header" .Site.Params.homepage.secondSectionHeader "page" "homepage/_second_section_text")
+            (dict "icon" "bi-graph-up-arrow" "header" .Site.Params.homepage.thirdSectionHeader "page" "homepage/_third_section_text")) }}
+        <div class="col-lg-4">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex"><i class="{{ .icon }} m-auto text-primary"></i></div>
+            <h3>{{ .header }}</h3>
+            <div class="lead mb-0">{{ with $.Site.GetPage .page }}{{ .Content | markdownify }}{{ end }}</div>
           </div>
         </div>
-        <div class="row align-items-center">
-          <div class="col-lg-4">
-            <h3>{{ .Site.Params.homepage.secondSectionHeader }}</h3>
-          </div>
-          <div class="col-lg-8">
-            <p>{{ with .Site.GetPage "homepage/_second_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-lg-4">
-            <h3>{{ .Site.Params.homepage.thirdSectionHeader }}</h3>
-          </div>
-          <div class="col-lg-8">
-            <p>{{ with .Site.GetPage "homepage/_third_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
-          </div>
-        </div>
-      </container>
+      {{ end }}
+    </div>
   </div>
-
-<div class="container-fluid no-gutter">
-  <div id="ea-network-banner" class="row banner-section" style="background-image:url('{{ "img/bottom-banner.jpg" | absURL }}')">
-    <div class="all-center"><span class="banner-section-text">{{ .Site.Params.homepage.bottomBannerText }}</span></div>
-  </div>
-</div>
 </section>
 
+<!-- Events: the Google Calendar is the source of truth for what's on -->
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <h2>{{ .Site.Params.homepage.eventsHeader | default "Upcoming events" }}</h2>
+        <p class="lead">{{ .Site.Params.homepage.eventsText }}</p>
+        <a href="{{ "calendar" | absLangURL }}" class="btn btn-primary btn-lg">
+          <i class="bi-calendar-event me-2"></i>{{ .Site.Params.navbar.Calendar }}
+        </a>
+      </div>
+      <div class="col-lg-7">
+        {{ partial "google-calendar.html" (dict "ctx" . "mode" "AGENDA") }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+{{ with .Site.Params.urls.SubstackUrl }}
+<section class="call-to-action text-white text-center">
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-xl-7">
+        <h2 class="mb-3">{{ $.Site.Params.homepage.newsletterHeader | default "Stay in the loop" }}</h2>
+        <p class="lead mb-4">{{ $.Site.Params.homepage.newsletterText }}</p>
+        <a href="{{ . }}" class="btn btn-light btn-lg">
+          <i class="bi-envelope-paper me-2"></i>{{ $.Site.Params.homepage.newsletterButton | default "Subscribe to our newsletter" }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
 
 {{ partial "footer.html" . }}

@@ -1,0 +1,18 @@
+{{ partial "header.html" . }}
+
+{{ partial "page-header.html" (dict "ctx" . "title" .Title) }}
+
+<div class="container content-body">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      {{ .Content }}
+      <ul>
+        {{ range .Pages }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

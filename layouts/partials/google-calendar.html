@@ -1,0 +1,21 @@
+{{/*
+  Google Calendar embed.
+
+  Usage: {{ partial "google-calendar.html" (dict "ctx" . "mode" "AGENDA") }}
+  mode is a Google Calendar view: AGENDA (list) or MONTH (grid).
+
+  Reads groupinfo.googleCalendarId and groupinfo.timezone from config, so
+  the calendar can be changed without touching a template.
+*/}}
+{{ $ctx := .ctx }}
+{{ $mode := .mode | default "MONTH" }}
+{{ $id := $ctx.Site.Params.groupinfo.googleCalendarId }}
+{{ $tz := $ctx.Site.Params.groupinfo.timezone | default "America/Chicago" }}
+{{ if $id }}
+  {{ $src := printf "https://calendar.google.com/calendar/embed?src=%s&ctz=%s&mode=%s&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&bgcolor=%%23ffffff&color=%%230e879e" (urlquery $id) (urlquery $tz) $mode }}
+  <div class="calendar-embed shadow-sm">
+    <iframe src="{{ $src }}"
+            title="{{ $ctx.Site.Params.general.fullTitle }} events calendar"
+            frameborder="0" scrolling="no"></iframe>
+  </div>
+{{ end }}

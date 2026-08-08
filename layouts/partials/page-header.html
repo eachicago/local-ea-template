@@ -1,0 +1,13 @@
+{{/*
+  Interior page header. Falls back to the flat teal band when the page has
+  no banner image, so a new content page never renders a broken header.
+  Usage: {{ partial "page-header.html" (dict "ctx" . "title" "…" "image" "img/x.jpg") }}
+*/}}
+{{ $ctx := .ctx }}
+{{ $image := .image }}
+<header class="page-header text-center{{ with $image }} has-image{{ end }}"
+        {{ with $image }}style="background-image:url('{{ . | absURL }}')"{{ end }}>
+  <div class="container position-relative">
+    <h1 class="text-white mb-0">{{ .title | default $ctx.Title }}</h1>
+  </div>
+</header>
