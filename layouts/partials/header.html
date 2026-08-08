@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/bootstrap.css">
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css">
-    <script src="{{ .Site.BaseURL }}/js/fontawesome-all.js"></script>
+    <link rel="stylesheet" href="{{ "css/bootstrap.css" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
+    <script src="{{ "js/fontawesome-all.js" | absURL }}"></script>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -30,13 +30,13 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.Config.Services.GoogleAnalytics.ID }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', '{{ .Site.GoogleAnalytics }}');
+      gtag('config', '{{ site.Config.Services.GoogleAnalytics.ID }}');
     </script>
 
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400" rel="stylesheet">

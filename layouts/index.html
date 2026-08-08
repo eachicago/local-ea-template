@@ -3,7 +3,7 @@
 {{ partial "jumbotron.html" . }}
 
 <div class="container-fluid no-gutter">
-  <div id="top-banner" class="row banner-section" style="background-image:url('{{ .Site.BaseURL}}/img/top-banner.jpg')">
+  <div id="top-banner" class="row banner-section" style="background-image:url('{{ "img/top-banner.jpg" | absURL }}')">
     <div class="all-center"><span class="banner-section-text">{{ .Site.Params.homepage.topBannerText }}</span></div>
   </div>
 </div>
@@ -18,7 +18,7 @@
             <h3>{{ .Site.Params.homepage.firstSectionHeader }}</h3>
           </div>
           <div class="col-lg-8">
-            <p>{{ with .Site.GetPage "page" "homepage/_first_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
+            <p>{{ with .Site.GetPage "homepage/_first_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
           </div>
         </div>
         <div class="row align-items-center">
@@ -26,7 +26,7 @@
             <h3>{{ .Site.Params.homepage.secondSectionHeader }}</h3>
           </div>
           <div class="col-lg-8">
-            <p>{{ with .Site.GetPage "page" "homepage/_second_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
+            <p>{{ with .Site.GetPage "homepage/_second_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
           </div>
         </div>
         <div class="row align-items-center">
@@ -34,14 +34,14 @@
             <h3>{{ .Site.Params.homepage.thirdSectionHeader }}</h3>
           </div>
           <div class="col-lg-8">
-            <p>{{ with .Site.GetPage "page" "homepage/_third_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
+            <p>{{ with .Site.GetPage "homepage/_third_section_text" }}{{ .Content | markdownify }}{{ end }}</p>
           </div>
         </div>
       </container>
   </div>
 
 <div class="container-fluid no-gutter">
-  <div id="ea-network-banner" class="row banner-section" style="background-image:url('{{ .Site.BaseURL}}/img/bottom-banner.jpg')">
+  <div id="ea-network-banner" class="row banner-section" style="background-image:url('{{ "img/bottom-banner.jpg" | absURL }}')">
     <div class="all-center"><span class="banner-section-text">{{ .Site.Params.homepage.bottomBannerText }}</span></div>
   </div>
 </div>

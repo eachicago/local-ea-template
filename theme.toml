@@ -8,7 +8,10 @@ description = "A minimalist theme for Effective Altruism local chapters to use"
 homepage = "https://github.com/rtcharity/local-ea-template/blob/master/LICENSE.md"
 tags = []
 features = []
-min_version = "0.30.2"
+# Templates use the `site` global and the single-argument .Site.GetPage,
+# so they require a modern Hugo. 0.152.2 is the version this has been
+# verified against; older releases are untested.
+min_version = "0.152.2"
 
 [author]
   name = "Henry Stanley"
