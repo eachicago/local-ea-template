@@ -11,7 +11,7 @@
         <div class="text-center text-white">
           <h1 class="mb-4">{{ .Site.Params.homepage.mastheadHeading | default .Site.Params.general.fullTitle }}</h1>
           <h3 class="mb-5 fw-light">{{ .Site.Params.homepage.mastheadSubheading | default .Site.Params.general.strapline }}</h3>
-          <p class="mb-0">
+          <div class="d-flex flex-wrap justify-content-center gap-2 mb-0">
             {{ range $i, $b := (slice
                   (dict "text" .Site.Params.jumbotron.FirstButtonText  "link" .Site.Params.jumbotron.FirstButtonLink  "class" "btn-primary")
                   (dict "text" .Site.Params.jumbotron.SecondButtonText "link" .Site.Params.jumbotron.SecondButtonLink "class" "btn-light")
@@ -21,10 +21,10 @@
                 {{ if not (or (hasPrefix $b.link "http") (hasPrefix $b.link "mailto:")) }}
                   {{ $href = $b.link | absLangURL }}
                 {{ end }}
-                <a href="{{ $href }}" class="btn {{ $b.class }} btn-lg m-1">{{ $b.text }}</a>
+                <a href="{{ $href }}" class="btn {{ $b.class }} btn-lg">{{ $b.text }}</a>
               {{ end }}
             {{ end }}
-          </p>
+          </div>
         </div>
       </div>
     </div>

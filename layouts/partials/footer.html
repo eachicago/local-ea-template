@@ -5,9 +5,16 @@
       <div class="col-lg-4">{{ with .Site.GetPage "_footer-right" }}{{ .Content | markdownify }}{{ end }}</div>
       <div class="col-lg-4">
         <h4 id="newsletter">{{ .Site.Params.footer.newsletterHeader | default "Newsletter" }}</h4>
+        {{/*
+          Deliberately a link rather than Substack's <iframe> embed: the embed
+          ships its own gold button that clashes with the teal, and being
+          cross-origin it cannot be restyled.
+        */}}
+        <p class="text-muted small">{{ .Site.Params.footer.newsletterText | default "News, events and what we've been reading — straight to your inbox." }}</p>
         {{ with .Site.Params.urls.SubstackUrl }}
-          <iframe src="{{ . }}embed" style="border:1px solid #EEE; background:white; width:100%; max-width:100%;"
-                  height="150" frameborder="0" scrolling="no" title="Newsletter signup"></iframe>
+          <a href="{{ . }}" class="btn btn-primary">
+            <i class="bi-envelope-paper me-2"></i>{{ $.Site.Params.homepage.newsletterButton | default "Subscribe" }}
+          </a>
         {{ end }}
       </div>
     </div>

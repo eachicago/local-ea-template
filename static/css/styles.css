@@ -10825,8 +10825,8 @@ textarea.form-control-lg {
   }
 }
 .features-icons {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
 }
 .features-icons .features-icons-item {
   max-width: 20rem;
@@ -10873,7 +10873,7 @@ header.masthead h1, header.masthead .h1 {
 header.page-header {
   position: relative;
   background-color: #0e879e;
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 header.page-header.has-image {
   background-position: center center;
@@ -10910,11 +10910,11 @@ footer.footer ul {
 footer.footer ul li {
   margin-bottom: 0.35rem;
 }
-footer.footer a {
+footer.footer a:not(.btn) {
   color: #495057;
   text-decoration: none;
 }
-footer.footer a:hover {
+footer.footer a:not(.btn):hover {
   color: #0e879e;
   text-decoration: underline;
 }
@@ -10953,10 +10953,10 @@ footer.footer .social-links a:hover {
 .content-body p, .content-body li {
   line-height: 1.7;
 }
-.content-body a {
+.content-body a:not(.btn) {
   color: #0e879e;
 }
-.content-body a:hover {
+.content-body a:not(.btn):hover {
   color: #095663;
 }
 
@@ -11014,12 +11014,12 @@ footer.footer .social-links a:hover {
 .chi-stars {
   display: flex;
   justify-content: center;
-  gap: 0.4rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
 }
 .chi-star {
-  width: 14px;
-  height: 14px;
+  width: 17px;
+  height: 17px;
   fill: var(--chi-blue-mid);
 }
 /* One star in red — the accent that keeps the row from looking inert */
@@ -11087,4 +11087,21 @@ footer.footer ul li:before {
   height: 8px;
   background-color: var(--chi-blue-mid);
   clip-path: polygon(50% 0%, 61% 30%, 93% 25%, 73% 50%, 93% 75%, 61% 70%, 50% 100%, 39% 70%, 7% 75%, 27% 50%, 7% 25%, 39% 30%);
+}
+
+/* Masthead type scales with the viewport instead of overflowing it, and long
+   button labels wrap rather than pushing the page wider than the screen. */
+header.masthead h1, header.masthead .h1 {
+  font-size: clamp(1.6rem, 6vw, 3rem);
+  overflow-wrap: break-word;
+}
+header.masthead h3 {
+  font-size: clamp(1rem, 3.6vw, 1.5rem);
+}
+@media (max-width: 575.98px) {
+  header.masthead .btn-lg {
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-font-size: 1rem;
+    width: 100%;
+  }
 }
