@@ -11158,10 +11158,25 @@ header.masthead h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 1rem;
+  min-width: 0;
 }
+.event-body { min-width: 0; flex: 1 1 auto; }
+.event-title { overflow-wrap: anywhere; }
+/* A flex child will not shrink below its content width without min-width:0,
+   so long addresses used to push the card wider than the screen. Let them
+   wrap rather than truncating -- the address is useful information. */
 .event-location {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
+
+/* "Stay in the loop" — a loop, minimally */
+.loop-mark {
+  font-size: 3.25rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
+}
+.event-title a { color: inherit; text-decoration: none; }
+.event-title a:hover { color: var(--ea-teal); text-decoration: underline; }
+.event-title-ext { font-size: 0.7em; margin-left: 0.4rem; color: var(--ea-teal); vertical-align: 2px; }

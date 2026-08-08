@@ -15,20 +15,27 @@
 {{ if $events }}
   <ul class="event-list list-unstyled mb-0">
     {{ range first $limit $events }}
-      {{ $t := time.AsTime .start }}
+      {{ $e := . }}
+      {{ $t := time.AsTime $e.start }}
       <li class="event-item">
         <div class="event-date" aria-hidden="true">
           <span class="event-date-day">{{ $t.Format "2" }}</span>
           <span class="event-date-month">{{ $t.Format "Jan" }}</span>
         </div>
         <div class="event-body">
-          <h3 class="event-title">{{ .title }}</h3>
+          <h3 class="event-title">
+            {{ with $e.url }}
+              <a href="{{ . }}" rel="noopener">{{ $e.title }}<i class="bi-box-arrow-up-right event-title-ext" aria-hidden="true"></i></a>
+            {{ else }}
+              {{ $e.title }}
+            {{ end }}
+          </h3>
           <p class="event-meta mb-0">
             <span class="text-nowrap">
               <i class="bi-clock me-1"></i>
-              {{ $t.Format "Mon 2 Jan" }}{{ if not .allDay }}, {{ $t.Format "3:04pm" }}{{ else }} &middot; all day{{ end }}
+              {{ $t.Format "Mon 2 Jan" }}{{ if not $e.allDay }}, {{ $t.Format "3:04pm" }}{{ else }} &middot; all day{{ end }}
             </span>
-            {{ with .location }}
+            {{ with $e.location }}
               <span class="event-location"><i class="bi-geo-alt me-1"></i>{{ . }}</span>
             {{ end }}
           </p>
