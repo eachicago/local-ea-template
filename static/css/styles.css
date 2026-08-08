@@ -11000,19 +11000,6 @@ footer.footer .social-links a:hover {
   --chi-red: #d8232a;           /* flag red, desaturated off pure #FF0000 */
 }
 
-/* Slim flag bar across the very top of every page. At 6px it reads as a
-   design detail; at flag proportions it would read as a flag. */
-.chi-flagbar {
-  height: 6px;
-  width: 100%;
-  background: linear-gradient(
-    to bottom,
-    var(--chi-blue) 0 2px,
-    #ffffff 2px 4px,
-    var(--chi-blue) 4px 6px
-  );
-}
-
 .chi-flag-mark {
   display: flex;
   flex-direction: column;
