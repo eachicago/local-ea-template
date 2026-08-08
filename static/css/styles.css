@@ -10838,11 +10838,13 @@ textarea.form-control-lg {
   font-size: 4.5rem;
 }
 
-/* Masthead — the Bean, dimmed so white type stays legible against the sky */
+/* Masthead — the skyline at sunset. The scrim is a warm-to-teal gradient
+   rather than flat black: it keeps the golden sun and warm cloud colour
+   while still darkening enough for white type to stay legible. */
 header.masthead {
   position: relative;
   background-color: #000;
-  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  background: url("../img/skyline.jpg") no-repeat center 40%;
   background-size: cover;
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -10850,7 +10852,7 @@ header.masthead {
 header.masthead:before {
   content: "";
   position: absolute;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.45) 100%);
+  background: linear-gradient(180deg, rgba(10, 40, 60, 0.30) 0%, rgba(180, 90, 30, 0.18) 45%, rgba(9, 86, 99, 0.55) 100%);
   height: 100%;
   width: 100%;
   top: 0;
@@ -11011,23 +11013,35 @@ footer.footer .social-links a:hover {
   );
 }
 
+.chi-flag-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 190px;
+  margin: 0 auto 1.75rem;
+}
+.chi-bar {
+  display: block;
+  width: 100%;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--chi-blue);
+}
 .chi-stars {
   display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1.75rem;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 4px;
 }
 .chi-star {
-  width: 17px;
-  height: 17px;
-  fill: var(--chi-blue-mid);
-}
-/* One star in red — the accent that keeps the row from looking inert */
-.chi-stars .chi-star:nth-child(2) {
+  width: 22px;
+  height: 22px;
   fill: var(--chi-red);
 }
-.chi-stars--dark .chi-star { fill: rgba(255, 255, 255, 0.55); }
-.chi-stars--dark .chi-star:nth-child(2) { fill: #ffffff; }
+/* On a dark background the white field is implied, so lighten the bars */
+.chi-flag-mark--dark .chi-bar { background: rgba(255, 255, 255, 0.75); }
+.chi-flag-mark--dark .chi-star { fill: #ffffff; }
 
 /* Alternating section tint, so the page has some rhythm instead of
    white-all-the-way-down */
@@ -11086,7 +11100,7 @@ footer.footer ul li:before {
   width: 8px;
   height: 8px;
   background-color: var(--chi-blue-mid);
-  clip-path: polygon(50% 0%, 61% 30%, 93% 25%, 73% 50%, 93% 75%, 61% 70%, 50% 100%, 39% 70%, 7% 75%, 27% 50%, 7% 25%, 39% 30%);
+  clip-path: polygon(50% 0%, 63% 23%, 90% 23%, 76% 50%, 90% 77%, 63% 77%, 50% 100%, 37% 77%, 10% 77%, 24% 50%, 10% 23%, 37% 23%);
 }
 
 /* Masthead type scales with the viewport instead of overflowing it, and long
@@ -11104,4 +11118,12 @@ header.masthead h3 {
     --bs-btn-font-size: 1rem;
     width: 100%;
   }
+}
+
+/* Agenda view only fills the space it needs, so the homepage embed is shorter
+   than the month grid on the calendar page — otherwise it trails dead space. */
+.calendar-embed--compact,
+.calendar-embed--compact iframe {
+  height: 440px;
+  min-height: 440px;
 }
