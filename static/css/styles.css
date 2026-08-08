@@ -11114,3 +11114,54 @@ header.masthead h3 {
   height: 440px;
   min-height: 440px;
 }
+
+/* Upcoming events list (data/events.json) */
+.event-list { display: flex; flex-direction: column; gap: 0.85rem; }
+.event-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid #e3e9ee;
+  border-left: 4px solid var(--ea-teal);
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+}
+.event-date {
+  flex: 0 0 auto;
+  width: 3.1rem;
+  text-align: center;
+  line-height: 1.1;
+}
+.event-date-day {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ea-teal);
+}
+.event-date-month {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--chi-red);
+}
+.event-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+}
+.event-meta {
+  font-size: 0.875rem;
+  color: #5b6770;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+.event-location {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}

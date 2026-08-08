@@ -34,7 +34,7 @@
         </a>
       </div>
       <div class="col-lg-7">
-        {{ partial "google-calendar.html" (dict "ctx" . "mode" "AGENDA" "compact" true) }}
+        {{ partial "upcoming-events.html" (dict "ctx" . "limit" 5) }}
       </div>
     </div>
   </div>
