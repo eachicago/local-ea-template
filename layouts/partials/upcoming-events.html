@@ -11,9 +11,10 @@
 {{ $ctx := .ctx }}
 {{ $limit := .limit | default 5 }}
 {{ $events := site.Data.events }}
+{{ $compact := .compactCards }}
 
 {{ if $events }}
-  <ul class="event-list list-unstyled mb-0">
+  <ul class="event-list list-unstyled mb-0{{ if $compact }} event-list--compact{{ end }}">
     {{ range first $limit $events }}
       {{ $e := . }}
       {{ $t := time.AsTime $e.start }}

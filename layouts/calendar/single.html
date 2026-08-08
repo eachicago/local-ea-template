@@ -9,8 +9,20 @@
     </div>
   {{ end }}
 
-  <div class="row">
-    <div class="col-12">
+  {{/*
+    List first in the markup, so it leads on phones (where a 640px month grid
+    is awkward to scan) and sits left on desktop. On desktop the pane is
+    pinned to the calendar's height and scrolls internally, so the two
+    columns line up however many events there are.
+  */}}
+  <div class="row g-4">
+    <div class="col-lg-4 events-pane">
+      <h2 class="section-heading h4">{{ .Site.Params.pages.nextUpHeader | default "Next up" }}</h2>
+      <div class="events-pane-scroll">
+        {{ partial "upcoming-events.html" (dict "ctx" . "limit" 10 "compactCards" true) }}
+      </div>
+    </div>
+    <div class="col-lg-8">
       {{ partial "google-calendar.html" (dict "ctx" . "mode" "MONTH") }}
     </div>
   </div>
