@@ -19,9 +19,16 @@
             <li><a class="dropdown-item" href="{{ "reading-material" | absLangURL }}">{{ .Site.Params.navbar.ReadingMaterial }}</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="{{ "faq" | absLangURL }}">{{ .Site.Params.navbar.Faq }}</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ "calendar" | absLangURL }}">{{ .Site.Params.navbar.Calendar }}</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ "contact" | absLangURL }}">{{ .Site.Params.navbar.Contact }}</a></li>
+        {{ $cur := .RelPermalink }}
+        {{ range (slice
+              (dict "path" "faq"      "label" .Site.Params.navbar.Faq)
+              (dict "path" "calendar" "label" .Site.Params.navbar.Calendar)
+              (dict "path" "contact"  "label" .Site.Params.navbar.Contact)) }}
+          {{ $url := .path | absLangURL }}
+          <li class="nav-item">
+            <a class="nav-link{{ if hasPrefix $cur (printf "/%s" .path) }} active{{ end }}" href="{{ $url }}">{{ .label }}</a>
+          </li>
+        {{ end }}
         {{ partial "allLanguages.html" . }}
       </ul>
     </div>

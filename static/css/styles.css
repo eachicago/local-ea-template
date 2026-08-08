@@ -10981,3 +10981,110 @@ footer.footer .social-links a:hover {
     min-height: 520px;
   }
 }
+/* ---------------------------------------------------------------------------
+   Chicago accents
+
+   The previous logo was the city flag rendered literally — flag proportions,
+   #FF0000, four repeated bulbs. These rules keep the reference but abstract
+   it: the flag's six-pointed star as an ornament, its light blue as a section
+   tint, and its red toned down to a secondary accent used sparingly.
+   --------------------------------------------------------------------------- */
+:root {
+  --ea-teal: #0e879e;
+  --ea-teal-dark: #095663;
+  --chi-blue: #b3ddf2;          /* flag light blue — correct for the flag bar */
+  --chi-blue-mid: #5aa9d6;      /* deeper, so ornaments read against the tint */
+  --chi-blue-tint: #f2f9fd;     /* washed out, for section backgrounds */
+  --chi-red: #d8232a;           /* flag red, desaturated off pure #FF0000 */
+}
+
+/* Slim flag bar across the very top of every page. At 6px it reads as a
+   design detail; at flag proportions it would read as a flag. */
+.chi-flagbar {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--chi-blue) 0 2px,
+    #ffffff 2px 4px,
+    var(--chi-blue) 4px 6px
+  );
+}
+
+.chi-stars {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+.chi-star {
+  width: 14px;
+  height: 14px;
+  fill: var(--chi-blue-mid);
+}
+/* One star in red — the accent that keeps the row from looking inert */
+.chi-stars .chi-star:nth-child(2) {
+  fill: var(--chi-red);
+}
+.chi-stars--dark .chi-star { fill: rgba(255, 255, 255, 0.55); }
+.chi-stars--dark .chi-star:nth-child(2) { fill: #ffffff; }
+
+/* Alternating section tint, so the page has some rhythm instead of
+   white-all-the-way-down */
+.section-tint { background-color: var(--chi-blue-tint); }
+
+/* Section headings get a short teal rule underneath */
+.section-heading {
+  position: relative;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.section-heading:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 3.5rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ea-teal);
+}
+.text-center .section-heading:after,
+.section-heading.text-center:after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Feature icons sit in a soft teal disc rather than floating on the page */
+.features-icons .features-icons-icon {
+  width: 7rem;
+  border-radius: 50%;
+  background: rgba(14, 135, 158, 0.08);
+  margin: 0 auto 0.5rem;
+}
+
+/* Current page marked in the flag red — the one place a strong accent earns
+   its keep, because it carries information */
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: var(--ea-teal) !important;
+}
+.navbar .nav-item .nav-link.active {
+  box-shadow: inset 0 -3px 0 var(--chi-red);
+}
+
+/* Footer link columns get star bullets */
+footer.footer ul li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+footer.footer ul li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  background-color: var(--chi-blue-mid);
+  clip-path: polygon(50% 0%, 61% 30%, 93% 25%, 73% 50%, 93% 75%, 61% 70%, 50% 100%, 39% 70%, 7% 75%, 27% 50%, 7% 25%, 39% 30%);
+}

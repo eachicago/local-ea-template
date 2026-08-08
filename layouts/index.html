@@ -2,8 +2,9 @@
 {{ partial "masthead.html" . }}
 
 <!-- The three homepage sections, driven by config headers + content/homepage/*.md -->
-<section class="features-icons bg-light text-center">
+<section class="features-icons section-tint text-center">
   <div class="container">
+    {{ partial "stars.html" (dict "count" 4) }}
     <div class="row">
       {{ range (slice
             (dict "icon" "bi-compass"       "header" .Site.Params.homepage.firstSectionHeader  "page" "homepage/_first_section_text")
@@ -26,7 +27,7 @@
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-5">
-        <h2>{{ .Site.Params.homepage.eventsHeader | default "Upcoming events" }}</h2>
+        <h2 class="section-heading">{{ .Site.Params.homepage.eventsHeader | default "Upcoming events" }}</h2>
         <p class="lead">{{ .Site.Params.homepage.eventsText }}</p>
         <a href="{{ "calendar" | absLangURL }}" class="btn btn-primary btn-lg">
           <i class="bi-calendar-event me-2"></i>{{ .Site.Params.navbar.Calendar }}
@@ -45,6 +46,7 @@
   <div class="container position-relative">
     <div class="row justify-content-center">
       <div class="col-xl-7">
+        {{ partial "stars.html" (dict "count" 4 "class" "chi-stars--dark") }}
         <h2 class="mb-3">{{ $.Site.Params.homepage.newsletterHeader | default "Stay in the loop" }}</h2>
         <p class="lead mb-4">{{ $.Site.Params.homepage.newsletterText }}</p>
         <a href="{{ . }}" class="btn btn-light btn-lg">

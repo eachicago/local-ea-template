@@ -1,0 +1,13 @@
+{{/*
+  Chicago's flag uses four six-pointed stars, one per historical milestone.
+  Used here as a small ornament — a nod to the city rather than a literal
+  flag. Optionally pass "count" (defaults to 4).
+*/}}
+{{ $count := (.count | default 4) }}
+<div class="chi-stars {{ .class }}" aria-hidden="true">
+  {{ range seq $count }}
+    <svg viewBox="0 0 24 24" class="chi-star" focusable="false">
+      <polygon points="12,1 14.75,7.24 21.53,6.5 17.5,12 21.53,17.5 14.75,16.76 12,23 9.25,16.76 2.47,17.5 6.5,12 2.47,6.5 9.25,7.24"/>
+    </svg>
+  {{ end }}
+</div>
