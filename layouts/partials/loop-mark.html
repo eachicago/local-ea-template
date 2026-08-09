@@ -1,0 +1,61 @@
+{{/*
+  The Loop, as a mark.
+
+  A visual pun for "Stay in the loop" — the elevated tracks that circle the
+  Chicago Loop, drawn the way the CTA rail diagrams draw them: fat rounded
+  strokes running concentrically, portrait rather than square, because the
+  real Loop is taller than it is wide.
+
+  Three rings, concentric on (65.5, 75) and inset 14 apart. The stroke is 9,
+  so that leaves a 5px gap — wide enough that they read as three tracks
+  rather than one thick band. The outer ring is 84 x 112, and everything
+  else falls out of that: the innermost ends up 28 wide, which is exactly
+  twice its corner radius, so it closes into a stadium the way the poster's
+  inner track does.
+
+  The white track is a backwards C that goes through the mark rather than
+  around it: in along the bottom, up through the loop's bottom edge on the
+  centreline, and back out to the left at y=75 — the rings' exact mid-height,
+  so the upper run looks aimed rather than approximate.
+
+  It is drawn as arc, straight, arc rather than as one semicircle, and that
+  is what makes the entry readable. A semicircle between two runs 70 apart
+  has to have a radius of 35, which is wider than the rings and swings the
+  turn outside them; splitting it lets the radius drop to 14 and puts a
+  straight climb in the middle, so the track crosses the bottom edge square
+  on and rises far enough to surface inside the innermost ring before it
+  peels away.
+
+  The crossings are the point. It passes under the bottom of all three rings
+  going up and under the left of all three coming out, surfacing only in the
+  gaps. A track that runs under something reads as track; the same line laid
+  over the top would read as a strike-through.
+
+  That crossing, and the red one, are the reason this is a rail diagram and
+  not a zero. Both are drawn before the rings so the rings weave over them,
+  and both run past the rings to the edge of the canvas, so the mark reads
+  as a detail crop of something larger.
+
+  The vertical one is red, and it has to be lightened and run at high alpha
+  to stay that way. Red and teal are close in value and near-opposite in
+  hue, so red laid over this gradient at the white line's opacity goes brown
+  — it desaturates toward the ground before it fades. Matching the two by
+  opacity would not have matched them by weight; the red is set by eye
+  against the teal instead.
+
+  The canvas is 113 wide because the track no longer sets the right edge —
+  the outer ring does. The two runs bleed off at x=0, so the ink spans the
+  viewBox in both directions and centres on its own.
+
+  Decorative, so it is hidden from assistive tech — the heading underneath
+  already says what this is.
+*/}}
+<svg class="loop-mark {{ .class }}" viewBox="0 0 113 150" fill="none"
+     stroke-width="9" stroke-linecap="round" aria-hidden="true" focusable="false">
+  <path class="loop-mark__feeder loop-mark__feeder--arc"
+        d="M0 145 H52 A14 14 0 0 0 66 131 V89 A14 14 0 0 0 52 75 H0"/>
+  <line class="loop-mark__feeder loop-mark__feeder--v" x1="87" y1="0" x2="87" y2="150"/>
+  <rect class="loop-mark__ring loop-mark__ring--outer" x="24" y="19" width="84" height="112" rx="28"/>
+  <rect class="loop-mark__ring loop-mark__ring--mid"   x="38" y="33" width="56" height="84"  rx="20"/>
+  <rect class="loop-mark__ring loop-mark__ring--inner" x="52" y="47" width="28" height="56"  rx="14"/>
+</svg>

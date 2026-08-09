@@ -46,7 +46,7 @@
   <div class="container position-relative">
     <div class="row justify-content-center">
       <div class="col-xl-7">
-        {{ partial "stars.html" (dict "count" 4 "class" "chi-flag-mark--dark") }}
+        {{ partial "loop-mark.html" dict }}
         <h2 class="mb-3">{{ $.Site.Params.homepage.newsletterHeader | default "Stay in the loop" }}</h2>
         <p class="lead mb-4">{{ $.Site.Params.homepage.newsletterText }}</p>
         <a href="{{ . }}" class="btn btn-light btn-lg">
