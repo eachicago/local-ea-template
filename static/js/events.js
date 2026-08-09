@@ -142,9 +142,47 @@
         render(mount, items.slice(0, limit), tz, compact);
       })
       .catch(function () {
-        // Leave the server-rendered list in place. It is generated nightly,
-        // so it is at worst slightly stale -- better than an empty box.
+        pruneStale(mount, id, tz);
       });
+  }
+
+  /*
+   * Fallback when the API cannot be reached.
+   *
+   * There is no scheduled rebuild, so the server-rendered list is only as
+   * fresh as the last deploy and may list events that have already happened.
+   * Drop those. If nothing recent is left, swap in the Google Calendar
+   * iframe, which is always live -- an empty box would be worse than an
+   * embed that does not match the site's styling.
+   */
+  function pruneStale(mount, id, tz) {
+    var items = mount.querySelectorAll(".event-item[data-start]");
+    if (!items.length) return;
+    var cutoff = new Date();
+    cutoff.setHours(0, 0, 0, 0);
+
+    var remaining = 0;
+    for (var i = 0; i < items.length; i++) {
+      var when = new Date(items[i].getAttribute("data-start"));
+      if (isNaN(when.getTime())) { remaining++; continue; }
+      if (when < cutoff) items[i].parentNode.removeChild(items[i]);
+      else remaining++;
+    }
+    if (remaining) return;
+
+    var frame = document.createElement("iframe");
+    frame.src =
+      "https://calendar.google.com/calendar/embed?src=" + encodeURIComponent(id) +
+      "&ctz=" + encodeURIComponent(tz) +
+      "&mode=AGENDA&showTitle=0&showPrint=0&showTabs=0&showCalendars=0" +
+      "&bgcolor=%23ffffff&color=%230e879e";
+    frame.setAttribute("title", "Events calendar");
+    frame.setAttribute("frameborder", "0");
+    frame.setAttribute("scrolling", "no");
+    var wrap = el("div", "calendar-embed calendar-embed--compact shadow-sm");
+    wrap.appendChild(frame);
+    mount.innerHTML = "";
+    mount.appendChild(wrap);
   }
 
   function init() {

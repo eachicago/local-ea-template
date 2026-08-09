@@ -30,7 +30,7 @@
     {{ range first $limit $events }}
       {{ $e := . }}
       {{ $t := time.AsTime $e.start }}
-      <li class="event-item">
+      <li class="event-item" data-start="{{ $e.start }}">
         <div class="event-date" aria-hidden="true">
           <span class="event-date-day">{{ $t.Format "2" }}</span>
           <span class="event-date-month">{{ $t.Format "Jan" }}</span>
