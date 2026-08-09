@@ -1,0 +1,47 @@
+{{ partial "header.html" . }}
+
+{{ partial "page-header.html" (dict "ctx" . "title" .Title "image" .Params.banner) }}
+
+<div class="container content-body">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      {{ .Content }}
+    </div>
+  </div>
+</div>
+
+{{/*
+  Organizer roster, driven by data/organizers.yaml. `with` means the section
+  disappears entirely while that list is empty, rather than rendering an
+  empty heading.
+*/}}
+{{ with .Site.Data.organizers.people }}
+<section class="section-tint py-5">
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">
+      {{ $.Site.Params.pages.organizersHeader | default "The people behind it" }}
+    </h2>
+    <div class="row justify-content-center g-4">
+      {{ range . }}
+        <div class="col-sm-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm text-center">
+            <div class="card-body">
+              {{ with .image }}
+                <img src="{{ . | absURL }}" alt="" class="rounded-circle mb-3"
+                     style="width:120px;height:120px;object-fit:cover">
+              {{ end }}
+              <h3 class="h5 mb-1">
+                {{ if .link }}<a href="{{ .link }}">{{ .name }}</a>{{ else }}{{ .name }}{{ end }}
+              </h3>
+              {{ with .role }}<p class="text-muted small mb-2">{{ . }}</p>{{ end }}
+              {{ with .bio }}<p class="mb-0">{{ . }}</p>{{ end }}
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ partial "footer.html" . }}

@@ -9,17 +9,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto align-items-lg-center">
+        {{ $cur := .RelPermalink }}
+        {{/* One "About us" dropdown: the group, then the movement. */}}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button"
-             data-bs-toggle="dropdown" aria-expanded="false">{{ .Site.Params.navbar.EffectiveAltruism }}</a>
+          <a class="nav-link dropdown-toggle{{ if or (hasPrefix $cur "/about-us") (hasPrefix $cur "/effective-altruism") }} active{{ end }}"
+             href="#" id="aboutDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">{{ .Site.Params.navbar.AboutUs | default "About us" }}</a>
           <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
-            <li><a class="dropdown-item" href="{{ "effective-altruism" | absLangURL }}">{{ .Site.Params.navbar.AboutEA }}</a></li>
-            <li><a class="dropdown-item" href="{{ "key-terms" | absLangURL }}">{{ .Site.Params.navbar.KeyTerms }}</a></li>
-            <li><a class="dropdown-item" href="{{ "organizations" | absLangURL }}">{{ .Site.Params.navbar.Organizations }}</a></li>
-            <li><a class="dropdown-item" href="{{ "reading-material" | absLangURL }}">{{ .Site.Params.navbar.ReadingMaterial }}</a></li>
+            <li><a class="dropdown-item" href="{{ "about-us" | absLangURL }}">{{ .Site.Params.navbar.EAChicago | default .Site.Title }}</a></li>
+            <li><a class="dropdown-item" href="{{ "effective-altruism" | absLangURL }}">{{ .Site.Params.navbar.EffectiveAltruism }}</a></li>
           </ul>
         </li>
-        {{ $cur := .RelPermalink }}
         {{ range (slice
               (dict "path" "faq"      "label" .Site.Params.navbar.Faq)
               (dict "path" "calendar" "label" .Site.Params.navbar.Calendar)
