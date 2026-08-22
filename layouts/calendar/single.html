@@ -28,14 +28,14 @@
   </div>
 
   <div class="row justify-content-center mt-4">
-    <div class="col-lg-9 text-center">
+    <div class="col-lg-9 d-flex flex-wrap justify-content-center gap-2">
       {{ with .Site.Params.groupinfo.googleCalendarId }}
         <a class="btn btn-primary" href="https://calendar.google.com/calendar/r?cid={{ . | urlquery }}">
           <i class="bi-calendar-plus me-2"></i>{{ $.Site.Params.pages.addToCalendarText | default "Add this calendar to your own" }}
         </a>
       {{ end }}
       {{ with .Site.Params.urls.SubstackUrl }}
-        <a class="btn btn-outline-primary ms-2" href="{{ . }}">
+        <a class="btn btn-outline-primary" href="{{ . }}">
           <i class="bi-envelope-paper me-2"></i>{{ $.Site.Params.homepage.newsletterButton | default "Subscribe to our newsletter" }}
         </a>
       {{ end }}
